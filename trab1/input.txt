@@ -1,0 +1,5 @@
+NomeDaFuncao(int hehehe)		@issoéumcomentario
+	IF( var1 <= 500)
+		var2 <- 500
+	FI	
+

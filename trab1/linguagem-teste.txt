@@ -1,0 +1,41 @@
+/*
+Esse é um arquivo teste para o uso do FLEX, sendo usado para o trabalho de compiladores.
+*/
+
+DIGITO	[0-9]
+CHARMAI	[A-Z]
+CHARMIN [a-z]
+
+%%
+{DIGITO}+		{
+			printf("Um número inteiro foi achado, sendo ele %d\n", atoi( yytext));
+			}
+
+{DIGITO}+"."{DIGITO}*	{
+			printf("Um número flutuante foi achado, sendo ele %s\n", yytext);
+			}
+
+{CHARMAI}{CHARMIN}*	{
+			printf("O nome %s foi achado!\n", yytext);
+			}
+
+{CHARMIN}+		{
+			printf("A palavra %s foi achada!\n", yytext);
+			}
+
+[ \n]			{}			
+
+[,.!:]			{
+			printf("A pontuação %s foi achada!\n", yytext);
+			}
+
+.			printf("O caractere %s foi achado, mas não está nas regras!\n",yytext);
+
+%%
+
+int main(int argc, char **argv){
+	printf("O nome do arquivo aberto será %s!\n\n",argv[1]);
+	yyin = fopen( argv[1], "r");
+	yylex();
+	printf("\n\n");
+}

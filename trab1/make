@@ -1,0 +1,2 @@
+flex regras_linguagem.l
+gcc lex.yy.c -lfl -o executavel
