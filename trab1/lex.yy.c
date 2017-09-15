@@ -1958,9 +1958,16 @@ void comparacao(char *ch){
 
 
 int main(int argc, char **argv){
-	printf("O nome do arquivo aberto será %s!\n\n",argv[1]);
-	yyin = fopen( argv[1], "r");
-	yylex();
-	printf("\n\n");
+	FILE *arq;
+	if(argc > 1){
+		printf("O nome do arquivo aberto será %s!\n\n",argv[1]);
+		if ( yyin = fopen( argv[1], "r") ){
+			yylex();
+			printf("\n\n");
+		}else{
+			printf("O arquivo não existe!!\n");
+		}
+
+	}
 }
 
