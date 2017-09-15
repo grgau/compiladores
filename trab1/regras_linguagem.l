@@ -88,9 +88,14 @@ FI				{
 [ ] 				{											//Não faz nada quando lê espaço
 				}
 
+[\'][a-zA-Z][\']   		{
+				printf("Um caractere foi encontrado!\n");						//Caractere
+				}
+
 .				{
 				printf("Isso não é reconhecido pelo analisador léxico\n");				//Qualquer outra coisa é recusada pelo analisador léxico
 				}
+
 
 %%
 
