@@ -482,13 +482,13 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "regras_linguagem.l"
 /*
-Esse é um arquivo teste para o uso do FLEX, sendo usado para o trabalho de compiladores.
+Esse é um arquivo feito para o uso no FLEX, sendo usado para o trabalho de compiladores.
 */
 #line 6 "regras_linguagem.l"
 #include <string.h>
 
-void comparacao(char *);
-void operacoes(char *);
+void comparacao(char *);			//Retorna token de comparação do caractere passado para a função
+void operacoes(char *);				//Retorna o token de operação do caractere passado para a função
 #line 492 "lex.yy.c"
 #line 493 "lex.yy.c"
 
@@ -771,84 +771,84 @@ case 1:
 YY_RULE_SETUP
 #line 14 "regras_linguagem.l"
 {
-				printf("Tipo de variável encontrado: %s\n", yytext);
+				printf("Tipo de variável encontrado: %s\n", yytext);					//Tipo de variável
 				}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 18 "regras_linguagem.l"
 {
-				printf("Condição IF encontrada: %s\n", yytext);
+				printf("Condição IF encontrada: %s\n", yytext);						//Condição "SE"
 				}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 22 "regras_linguagem.l"
 {
-				printf("Condição ELSE encontrada: %s\n", yytext);
+				printf("Condição ELSE encontrada: %s\n", yytext);					//Condição "SENÃO"
 				}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 26 "regras_linguagem.l"
 {
-				printf("Laço FOR encontrado: %s\n", yytext);
+				printf("Laço FOR encontrado: %s\n", yytext);						//Laço de repetição "PARA"
 				}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 30 "regras_linguagem.l"
 {
-				printf("Laço WHILE encontrado: %s\n", yytext);
+				printf("Laço WHILE encontrado: %s\n", yytext);						//Laço de repetição "ENQUANTO"
 				}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 34 "regras_linguagem.l"
 {
-				printf("Fim de condição ou laço encontrado: %s\n", yytext);
+				printf("Fim de condição ou laço encontrado: %s\n", yytext);				//Sinalizador de fim de condição ou laço de repetição
 				}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 38 "regras_linguagem.l"
 {
-				printf("Abertura de parênteses encontrada!\n");
+				printf("Abertura de parênteses encontrada!\n");						//Abre parênteses
 				}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 42 "regras_linguagem.l"
 {
-				printf("Fechamento de parênteses encontrado!\n");
+				printf("Fechamento de parênteses encontrado!\n");					//Fecha parênteses
 				}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 46 "regras_linguagem.l"
 {
-				printf("Número inteiro encontrado: %s\n", yytext);
+				printf("Número inteiro encontrado: %s\n", yytext);					//Números inteiros
 				}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 50 "regras_linguagem.l"
 {
-				printf("Número flutuante encontrado: %s\n", yytext);
+				printf("Número flutuante encontrado: %s\n", yytext);					//Números de ponto flutuante
 				}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 54 "regras_linguagem.l"
 {
-				printf("Nome de variável encontrado: %s\n", yytext);
+				printf("Nome de variável encontrado: %s\n", yytext);					//Nome de variável
 				}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 58 "regras_linguagem.l"
 {
-				printf("Nome de um método encontrado: %s\n", yytext);
+				printf("Nome de um método encontrado: %s\n", yytext);					//Nome de métodos/funções
 				}
 	YY_BREAK
 case 13:
@@ -856,62 +856,63 @@ case 13:
 YY_RULE_SETUP
 #line 62 "regras_linguagem.l"
 {
-				printf("Pulo de linha identificado\n");
+				printf("Pulo de linha identificado\n");							//Sinalizador de nova linha no arquivo de entrada
 				}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 66 "regras_linguagem.l"
 {
-				printf("Tabulação encontrada!\n");
+				printf("Tabulação encontrada!\n");							//Sinalizador de tabulação no arquivo de entrada
 				}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 70 "regras_linguagem.l"
 {
-				printf("Campo de comentário encontrado: %s\n", yytext+sizeof(char));
+				printf("Campo de comentário encontrado: %s\n", yytext+sizeof(char));			//Campo de comentário até o fim da linha atual
 				}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 75 "regras_linguagem.l"
 {
-				operacoes(yytext);
+				operacoes(yytext);									//Passa o símbolo de operação aritmética para a função, que retorna o respectivo token para a operação
 				}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 80 "regras_linguagem.l"
 {
-				comparacao(yytext);
+				comparacao(yytext);									//Passa o símbolo de comparação para a função, que retorna o respectivo token para a comparação
 				}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 84 "regras_linguagem.l"
 {
-				printf("Símbolo de atribuição encontrado: %s\n", yytext);
+				printf("Símbolo de atribuição encontrado: %s\n", yytext);				//Símbolo de atribuição
 				}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 88 "regras_linguagem.l"
-{}
+{											//Não faz nada quando lê espaço
+				}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 90 "regras_linguagem.l"
+#line 91 "regras_linguagem.l"
 {
-				printf("Isso não é reconhecido pelo analisador léxico\n");
+				printf("Isso não é reconhecido pelo analisador léxico\n");				//Qualquer outra coisa é recusada pelo analisador léxico
 				}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 94 "regras_linguagem.l"
+#line 95 "regras_linguagem.l"
 ECHO;
 	YY_BREAK
-#line 914 "lex.yy.c"
+#line 915 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1916,7 +1917,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 94 "regras_linguagem.l"
+#line 95 "regras_linguagem.l"
 
 
 void operacoes(char *ch){
