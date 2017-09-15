@@ -72,7 +72,7 @@ FI				{
 				}
 
 
-[+|-|*|/]			{
+\+|\-|\*|\/				{
 				operacoes(yytext);									//Passa o símbolo de operação aritmética para a função, que retorna o respectivo token para a operação
 				}
 
@@ -90,6 +90,14 @@ FI				{
 
 [\'][a-zA-Z][\']   		{
 				printf("Um caractere foi encontrado!\n");						//Caractere
+				}
+
+[;]				{
+				printf("Ponto e vírgula encontrado!\n");
+				}
+
+[\"][a-zA-Z ]*[\"]    		{
+				printf("Uma string foi encontrada: %s!\n", yytext);
 				}
 
 .				{
