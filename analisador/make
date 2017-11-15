@@ -1,0 +1,5 @@
+bison -d sintatico.y
+flex lexico.l
+gcc -g -c lex.yy.c -o analisador.lex.o
+gcc -g -c sintatico.tab.c -o analisador.y.o
+gcc -g -o Analisador analisador.lex.o analisador.y.o -lfl
