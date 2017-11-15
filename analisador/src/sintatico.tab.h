@@ -80,7 +80,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 12 "sintatico.y" /* yacc.c:1909  */
+#line 12 "rules/sintatico.y" /* yacc.c:1909  */
 
     int inteiro;
     float real;

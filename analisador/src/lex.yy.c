@@ -514,11 +514,11 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "lexico.l"
+#line 1 "rules/lexico.l"
 /*
 Esse é um arquivo feito para o uso no FLEX, sendo usado para o trabalho de compiladores.
 */
-#line 6 "lexico.l"
+#line 6 "rules/lexico.l"
 #include <string.h>
 #include "sintatico.tab.h"
 void yyerror(char *);
@@ -740,7 +740,7 @@ YY_DECL
 		}
 
 	{
-#line 11 "lexico.l"
+#line 11 "rules/lexico.l"
 
 #line 746 "lex.yy.c"
 
@@ -801,17 +801,16 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 12 "lexico.l"
+#line 12 "rules/lexico.l"
 {
 	yylval.string_simbolo = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
-	printf ("\nTipo var: %s\n", yytext);
 	return(TIPOVAR);
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 19 "lexico.l"
+#line 18 "rules/lexico.l"
 {
 	yylval.string_simbolo  = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -820,7 +819,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 25 "lexico.l"
+#line 24 "rules/lexico.l"
 {
 	yylval.string_simbolo  = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -829,7 +828,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 31 "lexico.l"
+#line 30 "rules/lexico.l"
 {
 	yylval.string_simbolo  = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -838,7 +837,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 37 "lexico.l"
+#line 36 "rules/lexico.l"
 {
 	yylval.string_simbolo  = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -847,7 +846,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 43 "lexico.l"
+#line 42 "rules/lexico.l"
 {
 	yylval.string_simbolo  = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -856,21 +855,21 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 49 "lexico.l"
+#line 48 "rules/lexico.l"
 {
 	return(ABREPAR);
 }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 53 "lexico.l"
+#line 52 "rules/lexico.l"
 {
 	return(FECHAPAR);
 }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 57 "lexico.l"
+#line 56 "rules/lexico.l"
 {
 	yylval.inteiro = atoi(yytext);
 	return (INTEIRO);
@@ -878,7 +877,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 62 "lexico.l"
+#line 61 "rules/lexico.l"
 {
 	yylval.real = atof(yytext);
 	return (REAL);
@@ -886,7 +885,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 67 "lexico.l"
+#line 66 "rules/lexico.l"
 {
 	yylval.string_simbolo  = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -895,7 +894,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 73 "lexico.l"
+#line 72 "rules/lexico.l"
 {
 	yylval.string_simbolo  = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -905,103 +904,103 @@ YY_RULE_SETUP
 case 13:
 /* rule 13 can match eol */
 YY_RULE_SETUP
-#line 79 "lexico.l"
+#line 78 "rules/lexico.l"
 {
 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 82 "lexico.l"
+#line 81 "rules/lexico.l"
 {
 	//return(BLOCO);
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 86 "lexico.l"
+#line 85 "rules/lexico.l"
 {
 }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 89 "lexico.l"
+#line 88 "rules/lexico.l"
 {
 	return(ADICAO);
 }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 93 "lexico.l"
+#line 92 "rules/lexico.l"
 {
 	return(SUBTRACAO);
 }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 97 "lexico.l"
+#line 96 "rules/lexico.l"
 {
 	return(MULTIPLICACAO);
 }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 101 "lexico.l"
+#line 100 "rules/lexico.l"
 {
 	return(DIVISAO);
 }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 105 "lexico.l"
+#line 104 "rules/lexico.l"
 {
 	return(DIFERENTE);
 }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 109 "lexico.l"
+#line 108 "rules/lexico.l"
 {
 	return(IGUAL);
 }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 113 "lexico.l"
+#line 112 "rules/lexico.l"
 {
 	return(NEGACAO);
 }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 117 "lexico.l"
+#line 116 "rules/lexico.l"
 {
 	return(MAIOR);
 }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 121 "lexico.l"
+#line 120 "rules/lexico.l"
 {
 	return(MENOR);
 }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 125 "lexico.l"
+#line 124 "rules/lexico.l"
 {
 	return(MENORIGUAL);
 }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 129 "lexico.l"
+#line 128 "rules/lexico.l"
 {
 	return(MAIORIGUAL);
 }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 133 "lexico.l"
+#line 132 "rules/lexico.l"
 {
 	yylval.string_simbolo = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -1010,13 +1009,13 @@ YY_RULE_SETUP
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 139 "lexico.l"
+#line 138 "rules/lexico.l"
 {											//Não faz nada quando lê espaço
 }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 142 "lexico.l"
+#line 141 "rules/lexico.l"
 {
 	yylval.simbolo = yytext[0];
 	return(CHAR);
@@ -1024,14 +1023,14 @@ YY_RULE_SETUP
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 147 "lexico.l"
+#line 146 "rules/lexico.l"
 {
 	return(FIMLINHA);
 }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 151 "lexico.l"
+#line 150 "rules/lexico.l"
 {
 	yylval.string_simbolo = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -1040,17 +1039,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 157 "lexico.l"
+#line 156 "rules/lexico.l"
 {
 	yyerror("Caracter desconhecido");						//Qualquer outra coisa é recusada pelo analisador léxico
 }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 160 "lexico.l"
+#line 159 "rules/lexico.l"
 ECHO;
 	YY_BREAK
-#line 1054 "lex.yy.c"
+#line 1053 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2051,7 +2050,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 160 "lexico.l"
+#line 159 "rules/lexico.l"
 
 
 

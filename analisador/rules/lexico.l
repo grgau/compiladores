@@ -12,7 +12,6 @@ void yyerror(char *);
 int|char|float {
 	yylval.string_simbolo = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
-	printf ("\nTipo var: %s\n", yytext);
 	return(TIPOVAR);
 }
 

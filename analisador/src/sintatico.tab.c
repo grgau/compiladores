@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 5 "sintatico.y" /* yacc.c:339  */
+#line 5 "rules/sintatico.y" /* yacc.c:339  */
 
 #include <stdio.h>
 int yylex();
@@ -138,7 +138,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 12 "sintatico.y" /* yacc.c:355  */
+#line 12 "rules/sintatico.y" /* yacc.c:355  */
 
     int inteiro;
     float real;
@@ -1234,7 +1234,7 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 30 "sintatico.y" /* yacc.c:1646  */
+#line 30 "rules/sintatico.y" /* yacc.c:1646  */
     {printf ("TipoVar: %s\nNomeMetodo: %s\n", (yyvsp[-1].string_simbolo), (yyvsp[0].string_simbolo));}
 #line 1240 "sintatico.tab.c" /* yacc.c:1646  */
     break;
@@ -1468,10 +1468,10 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 32 "sintatico.y" /* yacc.c:1906  */
+#line 32 "rules/sintatico.y" /* yacc.c:1906  */
 
 
-int main (void){
+int main (void) {
     yyparse();
     return 0;
 }

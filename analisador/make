@@ -1,5 +1,10 @@
-bison -d sintatico.y
-flex lexico.l
-gcc -g -c lex.yy.c -o analisador.lex.o
-gcc -g -c sintatico.tab.c -o analisador.y.o
-gcc -g -o Analisador analisador.lex.o analisador.y.o -lfl
+bison -d rules/sintatico.y
+flex rules/lexico.l
+
+mv lex.yy.c src
+mv sintatico.tab.c src
+mv sintatico.tab.h src
+
+gcc -g -c src/lex.yy.c -o build/analisador.lex.o
+gcc -g -c src/sintatico.tab.c -o build/analisador.y.o
+gcc -g -o analisador build/analisador.lex.o build/analisador.y.o -lfl
