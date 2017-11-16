@@ -47,31 +47,33 @@ extern int yydebug;
   {
     INTEIRO = 258,
     REAL = 259,
-    ABREPAR = 260,
-    FECHAPAR = 261,
-    CHAR = 262,
-    FIMLINHA = 263,
-    ADICAO = 264,
-    SUBTRACAO = 265,
-    MULTIPLICACAO = 266,
-    DIVISAO = 267,
-    MAIOR = 268,
-    MENOR = 269,
-    MAIORIGUAL = 270,
-    MENORIGUAL = 271,
-    DIFERENTE = 272,
-    NEGACAO = 273,
-    IGUAL = 274,
-    TIPOVAR = 275,
-    IFCONDICAO = 276,
-    ELSECONDICAO = 277,
-    FORREPETICAO = 278,
-    WHILEREPETICAO = 279,
-    FICONDICAO = 280,
-    VARIAVEL = 281,
-    METODO = 282,
-    ATRIBUICAO = 283,
-    STRING = 284
+    OUTROARGUMENTO = 260,
+    BLOCO = 261,
+    FIMBLOCO = 262,
+    ABREPAR = 263,
+    FECHAPAR = 264,
+    CHAR = 265,
+    FIMLINHA = 266,
+    ADICAO = 267,
+    SUBTRACAO = 268,
+    MULTIPLICACAO = 269,
+    DIVISAO = 270,
+    MAIOR = 271,
+    MENOR = 272,
+    MAIORIGUAL = 273,
+    MENORIGUAL = 274,
+    DIFERENTE = 275,
+    NEGACAO = 276,
+    IGUAL = 277,
+    TIPOVAR = 278,
+    IFCONDICAO = 279,
+    ELSECONDICAO = 280,
+    FORREPETICAO = 281,
+    WHILEREPETICAO = 282,
+    VARIAVEL = 283,
+    METODO = 284,
+    ATRIBUICAO = 285,
+    STRING = 286
   };
 #endif
 
@@ -87,7 +89,7 @@ union YYSTYPE
     char simbolo;
     char *string_simbolo;
 
-#line 91 "sintatico.tab.h" /* yacc.c:1909  */
+#line 93 "sintatico.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

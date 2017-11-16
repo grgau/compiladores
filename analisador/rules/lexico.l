@@ -39,17 +39,13 @@ WHILE {
 	return(WHILEREPETICAO);
 }
 
-FI {
-	yylval.string_simbolo  = malloc(strlen(yytext));
-	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
-	return(FICONDICAO);
-}
-
 [(] {
+    yylval.simbolo = yytext[0];
 	return(ABREPAR);
 }
 
 [)] {
+    yylval.simbolo = yytext[0];
 	return(FECHAPAR);
 }
 
@@ -75,57 +71,80 @@ FI {
 	return(METODO);
 }
 
+[\t] {
+}
+
 [\n] {
 }
 
-[\t] {
-	//return(BLOCO);
+[{] {
+    yylval.simbolo = yytext[0];
+    return(BLOCO);
+}
+
+[}] {
+    yylval.simbolo = yytext[0];
+    return(FIMBLOCO);
 }
 
 @.* {
 }
 
 "+" {
+    yylval.simbolo = yytext[0];
 	return(ADICAO);
 }
 
 "-" {
+    yylval.simbolo = yytext[0];
 	return(SUBTRACAO);
 }
 
 "*" {
+    yylval.simbolo = yytext[0];
 	return(MULTIPLICACAO);
 }
 
 "/" {
+    yylval.simbolo = yytext[0];
 	return(DIVISAO);
 }
 
 "!=" {
+    yylval.string_simbolo = malloc(strlen(yytext));
+    strncpy(yylval.string_simbolo, yytext, strlen(yytext));
 	return(DIFERENTE);
 }
 
 "=" {
+    yylval.simbolo = yytext[0];
 	return(IGUAL);
 }
 
 "!" {
+    yylval.simbolo = yytext[0];
 	return(NEGACAO);
 }
 
 ">" {
+    yylval.simbolo = yytext[0];
 	return(MAIOR);
 }
 
 "<" {
+    yylval.simbolo = yytext[0];
 	return(MENOR);
 }
 
 "<=" {
+    yylval.string_simbolo = malloc(strlen(yytext));
+    strncpy(yylval.string_simbolo, yytext, strlen(yytext));
 	return(MENORIGUAL);
 }
 
 ">=" {
+    yylval.string_simbolo = malloc(strlen(yytext));
+    strncpy(yylval.string_simbolo, yytext, strlen(yytext));
 	return(MAIORIGUAL);
 }
 
@@ -144,7 +163,13 @@ FI {
 }
 
 [;] {
+    yylval.simbolo = yytext[0];
 	return(FIMLINHA);
+}
+
+[,] {
+    yylval.simbolo = yytext[0];
+    return(OUTROARGUMENTO);
 }
 
 [\"][a-zA-Z ]*[\"] {
