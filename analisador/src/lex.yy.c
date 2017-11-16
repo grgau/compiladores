@@ -1058,7 +1058,7 @@ YY_RULE_SETUP
 #line 170 "rules/lexico.l"
 {
     yylval.simbolo = yytext[0];
-    return(OUTROARGUMENTO);
+    return(VIRGULA);
 }
 	YY_BREAK
 case 33:

@@ -169,7 +169,7 @@ WHILE {
 
 [,] {
     yylval.simbolo = yytext[0];
-    return(OUTROARGUMENTO);
+    return(VIRGULA);
 }
 
 [\"][a-zA-Z ]*[\"] {

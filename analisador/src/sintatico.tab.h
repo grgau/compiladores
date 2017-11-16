@@ -47,7 +47,7 @@ extern int yydebug;
   {
     INTEIRO = 258,
     REAL = 259,
-    OUTROARGUMENTO = 260,
+    VIRGULA = 260,
     BLOCO = 261,
     FIMBLOCO = 262,
     ABREPAR = 263,
