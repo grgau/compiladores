@@ -158,7 +158,8 @@ WHILE {
 }
 
 [\'][a-zA-Z][\'] {
-	yylval.simbolo = yytext[0];
+	yylval.string_simbolo = malloc(strlen(yytext));
+	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
 	return(CHAR);
 }
 

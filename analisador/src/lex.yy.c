@@ -1041,13 +1041,14 @@ case 30:
 YY_RULE_SETUP
 #line 160 "rules/lexico.l"
 {
-	yylval.simbolo = yytext[0];
+	yylval.string_simbolo = malloc(strlen(yytext));
+	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
 	return(CHAR);
 }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 165 "rules/lexico.l"
+#line 166 "rules/lexico.l"
 {
     yylval.simbolo = yytext[0];
 	return(FIMLINHA);
@@ -1055,7 +1056,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 170 "rules/lexico.l"
+#line 171 "rules/lexico.l"
 {
     yylval.simbolo = yytext[0];
     return(VIRGULA);
@@ -1063,7 +1064,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 175 "rules/lexico.l"
+#line 176 "rules/lexico.l"
 {
 	yylval.string_simbolo = malloc(strlen(yytext));
 	strncpy(yylval.string_simbolo, yytext, strlen(yytext));
@@ -1072,17 +1073,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 181 "rules/lexico.l"
+#line 182 "rules/lexico.l"
 {
 	yyerror("Caracter desconhecido");						//Qualquer outra coisa é recusada pelo analisador léxico
 }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 184 "rules/lexico.l"
+#line 185 "rules/lexico.l"
 ECHO;
 	YY_BREAK
-#line 1086 "lex.yy.c"
+#line 1087 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2083,7 +2084,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 184 "rules/lexico.l"
+#line 185 "rules/lexico.l"
 
 
 

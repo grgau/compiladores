@@ -1,0 +1,1629 @@
+Gramática
+
+    0 $accept: Funcao $end
+
+    1 Funcao: TIPOVAR METODO ABREPAR MaisDeUmArgumento FECHAPAR BLOCO Interior FIMBLOCO
+
+    2 Interior: %empty
+    3         | Partes Interior
+
+    4 Partes: TIPOVAR MaisDeUmArgumento FIMLINHA
+    5       | VARIAVEL ATRIBUICAO INTEIRO FIMLINHA
+    6       | VARIAVEL ATRIBUICAO REAL FIMLINHA
+    7       | VARIAVEL ATRIBUICAO CHAR FIMLINHA
+    8       | VARIAVEL ATRIBUICAO VARIAVEL FIMLINHA
+    9       | VARIAVEL ATRIBUICAO OperacaoAritmetica FIMLINHA
+   10       | VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FIMLINHA
+   11       | VARIAVEL ATRIBUICAO OperacaoAritmeticaFloat FIMLINHA
+   12       | METODO ABREPAR MaisDeUmArgumento FECHAPAR FIMLINHA
+   13       | Condicao
+
+   14 MaisDeUmArgumento: VARIAVEL VIRGULA MaisDeUmArgumento
+   15                  | VARIAVEL
+
+   16 OperacaoAritmetica: VARIAVEL ADICAO VARIAVEL
+   17                   | VARIAVEL SUBTRACAO VARIAVEL
+   18                   | VARIAVEL MULTIPLICACAO VARIAVEL
+   19                   | VARIAVEL DIVISAO VARIAVEL
+
+   20 OperacaoAritmeticaInt: VARIAVEL ADICAO INTEIRO
+   21                      | VARIAVEL SUBTRACAO INTEIRO
+   22                      | VARIAVEL MULTIPLICACAO INTEIRO
+   23                      | VARIAVEL DIVISAO INTEIRO
+
+   24 OperacaoAritmeticaFloat: VARIAVEL ADICAO REAL
+   25                        | VARIAVEL SUBTRACAO REAL
+   26                        | VARIAVEL MULTIPLICACAO REAL
+   27                        | VARIAVEL DIVISAO REAL
+
+   28 OperacaoComparacao: VARIAVEL MAIOR VARIAVEL
+   29                   | VARIAVEL MENOR VARIAVEL
+   30                   | VARIAVEL MAIORIGUAL VARIAVEL
+   31                   | VARIAVEL MENORIGUAL VARIAVEL
+   32                   | VARIAVEL DIFERENTE VARIAVEL
+   33                   | VARIAVEL IGUAL VARIAVEL
+   34                   | NEGACAO VARIAVEL
+
+   35 OperacaoComparacaoInt: VARIAVEL MAIOR INTEIRO
+   36                      | VARIAVEL MENOR INTEIRO
+   37                      | VARIAVEL MAIORIGUAL INTEIRO
+   38                      | VARIAVEL MENORIGUAL INTEIRO
+   39                      | VARIAVEL DIFERENTE INTEIRO
+   40                      | VARIAVEL IGUAL INTEIRO
+
+   41 OperacaoComparacaoFloat: VARIAVEL MAIOR REAL
+   42                        | VARIAVEL MENOR REAL
+   43                        | VARIAVEL MAIORIGUAL REAL
+   44                        | VARIAVEL MENORIGUAL REAL
+   45                        | VARIAVEL DIFERENTE REAL
+   46                        | VARIAVEL IGUAL REAL
+
+   47 OperacaoComparacaoCharString: VARIAVEL DIFERENTE CHAR
+   48                             | VARIAVEL IGUAL CHAR
+   49                             | VARIAVEL DIFERENTE STRING
+   50                             | VARIAVEL IGUAL STRING
+
+   51 Condicao: IFCONDICAO ABREPAR OperacaoComparacao FECHAPAR BLOCO Interior FIMBLOCO Else
+   52         | IFCONDICAO ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO Interior FIMBLOCO Else
+   53         | IFCONDICAO ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO Interior FIMBLOCO Else
+   54         | IFCONDICAO ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO Interior FIMBLOCO Else
+   55         | FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+   56         | WHILEREPETICAO ABREPAR OperacaoComparacao FECHAPAR BLOCO Interior FIMBLOCO
+   57         | WHILEREPETICAO ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO Interior FIMBLOCO
+   58         | WHILEREPETICAO ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO Interior FIMBLOCO
+   59         | WHILEREPETICAO ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO Interior FIMBLOCO
+
+   60 Else: %empty
+   61     | ELSECONDICAO BLOCO Interior FIMBLOCO
+
+
+Terminais, com as regras onde eles aparecem
+
+$end (0) 0
+error (256)
+INTEIRO (258) 5 20 21 22 23 35 36 37 38 39 40 55
+REAL (259) 6 24 25 26 27 41 42 43 44 45 46
+VIRGULA (260) 14 55
+BLOCO (261) 1 51 52 53 54 55 56 57 58 59 61
+FIMBLOCO (262) 1 51 52 53 54 55 56 57 58 59 61
+ABREPAR (263) 1 12 51 52 53 54 55 56 57 58 59
+FECHAPAR (264) 1 12 51 52 53 54 55 56 57 58 59
+FIMLINHA (265) 4 5 6 7 8 9 10 11 12
+ADICAO (266) 16 20 24
+SUBTRACAO (267) 17 21 25
+MULTIPLICACAO (268) 18 22 26
+DIVISAO (269) 19 23 27
+MAIOR (270) 28 35 41
+MENOR (271) 29 36 42
+MAIORIGUAL (272) 30 37 43
+MENORIGUAL (273) 31 38 44
+DIFERENTE (274) 32 39 45 47 49
+NEGACAO (275) 34
+IGUAL (276) 33 40 46 48 50
+TIPOVAR (277) 1 4
+IFCONDICAO (278) 51 52 53 54
+ELSECONDICAO (279) 61
+FORREPETICAO (280) 55
+WHILEREPETICAO (281) 56 57 58 59
+VARIAVEL (282) 5 6 7 8 9 10 11 14 15 16 17 18 19 20 21 22 23 24 25
+    26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46
+    47 48 49 50 55
+METODO (283) 1 12
+ATRIBUICAO (284) 5 6 7 8 9 10 11 55
+CHAR (285) 7 47 48
+STRING (286) 49 50
+
+
+Não terminais com as regras onde eles aparecem
+
+$accept (32)
+    à esquerda: 0
+Funcao (33)
+    à esquerda: 1, à direita: 0
+Interior (34)
+    à esquerda: 2 3, à direita: 1 3 51 52 53 54 55 56 57 58 59 61
+Partes (35)
+    à esquerda: 4 5 6 7 8 9 10 11 12 13, à direita: 3
+MaisDeUmArgumento (36)
+    à esquerda: 14 15, à direita: 1 4 12 14
+OperacaoAritmetica (37)
+    à esquerda: 16 17 18 19, à direita: 9
+OperacaoAritmeticaInt (38)
+    à esquerda: 20 21 22 23, à direita: 10 55
+OperacaoAritmeticaFloat (39)
+    à esquerda: 24 25 26 27, à direita: 11
+OperacaoComparacao (40)
+    à esquerda: 28 29 30 31 32 33 34, à direita: 51 56
+OperacaoComparacaoInt (41)
+    à esquerda: 35 36 37 38 39 40, à direita: 52 55 57
+OperacaoComparacaoFloat (42)
+    à esquerda: 41 42 43 44 45 46, à direita: 53 58
+OperacaoComparacaoCharString (43)
+    à esquerda: 47 48 49 50, à direita: 54 59
+Condicao (44)
+    à esquerda: 51 52 53 54 55 56 57 58 59, à direita: 13
+Else (45)
+    à esquerda: 60 61, à direita: 51 52 53 54
+
+
+Estado 0
+
+    0 $accept: . Funcao $end
+
+    TIPOVAR  deslocar, e ir ao estado 1
+
+    Funcao  ir ao estado 2
+
+
+Estado 1
+
+    1 Funcao: TIPOVAR . METODO ABREPAR MaisDeUmArgumento FECHAPAR BLOCO Interior FIMBLOCO
+
+    METODO  deslocar, e ir ao estado 3
+
+
+Estado 2
+
+    0 $accept: Funcao . $end
+
+    $end  deslocar, e ir ao estado 4
+
+
+Estado 3
+
+    1 Funcao: TIPOVAR METODO . ABREPAR MaisDeUmArgumento FECHAPAR BLOCO Interior FIMBLOCO
+
+    ABREPAR  deslocar, e ir ao estado 5
+
+
+Estado 4
+
+    0 $accept: Funcao $end .
+
+    $padrão  aceitar
+
+
+Estado 5
+
+    1 Funcao: TIPOVAR METODO ABREPAR . MaisDeUmArgumento FECHAPAR BLOCO Interior FIMBLOCO
+
+    VARIAVEL  deslocar, e ir ao estado 6
+
+    MaisDeUmArgumento  ir ao estado 7
+
+
+Estado 6
+
+   14 MaisDeUmArgumento: VARIAVEL . VIRGULA MaisDeUmArgumento
+   15                  | VARIAVEL .
+
+    VIRGULA  deslocar, e ir ao estado 8
+
+    $padrão  reduzir usando a regra 15 (MaisDeUmArgumento)
+
+
+Estado 7
+
+    1 Funcao: TIPOVAR METODO ABREPAR MaisDeUmArgumento . FECHAPAR BLOCO Interior FIMBLOCO
+
+    FECHAPAR  deslocar, e ir ao estado 9
+
+
+Estado 8
+
+   14 MaisDeUmArgumento: VARIAVEL VIRGULA . MaisDeUmArgumento
+
+    VARIAVEL  deslocar, e ir ao estado 6
+
+    MaisDeUmArgumento  ir ao estado 10
+
+
+Estado 9
+
+    1 Funcao: TIPOVAR METODO ABREPAR MaisDeUmArgumento FECHAPAR . BLOCO Interior FIMBLOCO
+
+    BLOCO  deslocar, e ir ao estado 11
+
+
+Estado 10
+
+   14 MaisDeUmArgumento: VARIAVEL VIRGULA MaisDeUmArgumento .
+
+    $padrão  reduzir usando a regra 14 (MaisDeUmArgumento)
+
+
+Estado 11
+
+    1 Funcao: TIPOVAR METODO ABREPAR MaisDeUmArgumento FECHAPAR BLOCO . Interior FIMBLOCO
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 18
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 12
+
+    4 Partes: TIPOVAR . MaisDeUmArgumento FIMLINHA
+
+    VARIAVEL  deslocar, e ir ao estado 6
+
+    MaisDeUmArgumento  ir ao estado 21
+
+
+Estado 13
+
+   51 Condicao: IFCONDICAO . ABREPAR OperacaoComparacao FECHAPAR BLOCO Interior FIMBLOCO Else
+   52         | IFCONDICAO . ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO Interior FIMBLOCO Else
+   53         | IFCONDICAO . ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO Interior FIMBLOCO Else
+   54         | IFCONDICAO . ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO Interior FIMBLOCO Else
+
+    ABREPAR  deslocar, e ir ao estado 22
+
+
+Estado 14
+
+   55 Condicao: FORREPETICAO . ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    ABREPAR  deslocar, e ir ao estado 23
+
+
+Estado 15
+
+   56 Condicao: WHILEREPETICAO . ABREPAR OperacaoComparacao FECHAPAR BLOCO Interior FIMBLOCO
+   57         | WHILEREPETICAO . ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO Interior FIMBLOCO
+   58         | WHILEREPETICAO . ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO Interior FIMBLOCO
+   59         | WHILEREPETICAO . ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO Interior FIMBLOCO
+
+    ABREPAR  deslocar, e ir ao estado 24
+
+
+Estado 16
+
+    5 Partes: VARIAVEL . ATRIBUICAO INTEIRO FIMLINHA
+    6       | VARIAVEL . ATRIBUICAO REAL FIMLINHA
+    7       | VARIAVEL . ATRIBUICAO CHAR FIMLINHA
+    8       | VARIAVEL . ATRIBUICAO VARIAVEL FIMLINHA
+    9       | VARIAVEL . ATRIBUICAO OperacaoAritmetica FIMLINHA
+   10       | VARIAVEL . ATRIBUICAO OperacaoAritmeticaInt FIMLINHA
+   11       | VARIAVEL . ATRIBUICAO OperacaoAritmeticaFloat FIMLINHA
+
+    ATRIBUICAO  deslocar, e ir ao estado 25
+
+
+Estado 17
+
+   12 Partes: METODO . ABREPAR MaisDeUmArgumento FECHAPAR FIMLINHA
+
+    ABREPAR  deslocar, e ir ao estado 26
+
+
+Estado 18
+
+    1 Funcao: TIPOVAR METODO ABREPAR MaisDeUmArgumento FECHAPAR BLOCO Interior . FIMBLOCO
+
+    FIMBLOCO  deslocar, e ir ao estado 27
+
+
+Estado 19
+
+    3 Interior: Partes . Interior
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 28
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 20
+
+   13 Partes: Condicao .
+
+    $padrão  reduzir usando a regra 13 (Partes)
+
+
+Estado 21
+
+    4 Partes: TIPOVAR MaisDeUmArgumento . FIMLINHA
+
+    FIMLINHA  deslocar, e ir ao estado 29
+
+
+Estado 22
+
+   51 Condicao: IFCONDICAO ABREPAR . OperacaoComparacao FECHAPAR BLOCO Interior FIMBLOCO Else
+   52         | IFCONDICAO ABREPAR . OperacaoComparacaoInt FECHAPAR BLOCO Interior FIMBLOCO Else
+   53         | IFCONDICAO ABREPAR . OperacaoComparacaoFloat FECHAPAR BLOCO Interior FIMBLOCO Else
+   54         | IFCONDICAO ABREPAR . OperacaoComparacaoCharString FECHAPAR BLOCO Interior FIMBLOCO Else
+
+    NEGACAO   deslocar, e ir ao estado 30
+    VARIAVEL  deslocar, e ir ao estado 31
+
+    OperacaoComparacao            ir ao estado 32
+    OperacaoComparacaoInt         ir ao estado 33
+    OperacaoComparacaoFloat       ir ao estado 34
+    OperacaoComparacaoCharString  ir ao estado 35
+
+
+Estado 23
+
+   55 Condicao: FORREPETICAO ABREPAR . VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    VARIAVEL  deslocar, e ir ao estado 36
+
+
+Estado 24
+
+   56 Condicao: WHILEREPETICAO ABREPAR . OperacaoComparacao FECHAPAR BLOCO Interior FIMBLOCO
+   57         | WHILEREPETICAO ABREPAR . OperacaoComparacaoInt FECHAPAR BLOCO Interior FIMBLOCO
+   58         | WHILEREPETICAO ABREPAR . OperacaoComparacaoFloat FECHAPAR BLOCO Interior FIMBLOCO
+   59         | WHILEREPETICAO ABREPAR . OperacaoComparacaoCharString FECHAPAR BLOCO Interior FIMBLOCO
+
+    NEGACAO   deslocar, e ir ao estado 30
+    VARIAVEL  deslocar, e ir ao estado 31
+
+    OperacaoComparacao            ir ao estado 37
+    OperacaoComparacaoInt         ir ao estado 38
+    OperacaoComparacaoFloat       ir ao estado 39
+    OperacaoComparacaoCharString  ir ao estado 40
+
+
+Estado 25
+
+    5 Partes: VARIAVEL ATRIBUICAO . INTEIRO FIMLINHA
+    6       | VARIAVEL ATRIBUICAO . REAL FIMLINHA
+    7       | VARIAVEL ATRIBUICAO . CHAR FIMLINHA
+    8       | VARIAVEL ATRIBUICAO . VARIAVEL FIMLINHA
+    9       | VARIAVEL ATRIBUICAO . OperacaoAritmetica FIMLINHA
+   10       | VARIAVEL ATRIBUICAO . OperacaoAritmeticaInt FIMLINHA
+   11       | VARIAVEL ATRIBUICAO . OperacaoAritmeticaFloat FIMLINHA
+
+    INTEIRO   deslocar, e ir ao estado 41
+    REAL      deslocar, e ir ao estado 42
+    VARIAVEL  deslocar, e ir ao estado 43
+    CHAR      deslocar, e ir ao estado 44
+
+    OperacaoAritmetica       ir ao estado 45
+    OperacaoAritmeticaInt    ir ao estado 46
+    OperacaoAritmeticaFloat  ir ao estado 47
+
+
+Estado 26
+
+   12 Partes: METODO ABREPAR . MaisDeUmArgumento FECHAPAR FIMLINHA
+
+    VARIAVEL  deslocar, e ir ao estado 6
+
+    MaisDeUmArgumento  ir ao estado 48
+
+
+Estado 27
+
+    1 Funcao: TIPOVAR METODO ABREPAR MaisDeUmArgumento FECHAPAR BLOCO Interior FIMBLOCO .
+
+    $padrão  reduzir usando a regra 1 (Funcao)
+
+
+Estado 28
+
+    3 Interior: Partes Interior .
+
+    $padrão  reduzir usando a regra 3 (Interior)
+
+
+Estado 29
+
+    4 Partes: TIPOVAR MaisDeUmArgumento FIMLINHA .
+
+    $padrão  reduzir usando a regra 4 (Partes)
+
+
+Estado 30
+
+   34 OperacaoComparacao: NEGACAO . VARIAVEL
+
+    VARIAVEL  deslocar, e ir ao estado 49
+
+
+Estado 31
+
+   28 OperacaoComparacao: VARIAVEL . MAIOR VARIAVEL
+   29                   | VARIAVEL . MENOR VARIAVEL
+   30                   | VARIAVEL . MAIORIGUAL VARIAVEL
+   31                   | VARIAVEL . MENORIGUAL VARIAVEL
+   32                   | VARIAVEL . DIFERENTE VARIAVEL
+   33                   | VARIAVEL . IGUAL VARIAVEL
+   35 OperacaoComparacaoInt: VARIAVEL . MAIOR INTEIRO
+   36                      | VARIAVEL . MENOR INTEIRO
+   37                      | VARIAVEL . MAIORIGUAL INTEIRO
+   38                      | VARIAVEL . MENORIGUAL INTEIRO
+   39                      | VARIAVEL . DIFERENTE INTEIRO
+   40                      | VARIAVEL . IGUAL INTEIRO
+   41 OperacaoComparacaoFloat: VARIAVEL . MAIOR REAL
+   42                        | VARIAVEL . MENOR REAL
+   43                        | VARIAVEL . MAIORIGUAL REAL
+   44                        | VARIAVEL . MENORIGUAL REAL
+   45                        | VARIAVEL . DIFERENTE REAL
+   46                        | VARIAVEL . IGUAL REAL
+   47 OperacaoComparacaoCharString: VARIAVEL . DIFERENTE CHAR
+   48                             | VARIAVEL . IGUAL CHAR
+   49                             | VARIAVEL . DIFERENTE STRING
+   50                             | VARIAVEL . IGUAL STRING
+
+    MAIOR       deslocar, e ir ao estado 50
+    MENOR       deslocar, e ir ao estado 51
+    MAIORIGUAL  deslocar, e ir ao estado 52
+    MENORIGUAL  deslocar, e ir ao estado 53
+    DIFERENTE   deslocar, e ir ao estado 54
+    IGUAL       deslocar, e ir ao estado 55
+
+
+Estado 32
+
+   51 Condicao: IFCONDICAO ABREPAR OperacaoComparacao . FECHAPAR BLOCO Interior FIMBLOCO Else
+
+    FECHAPAR  deslocar, e ir ao estado 56
+
+
+Estado 33
+
+   52 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoInt . FECHAPAR BLOCO Interior FIMBLOCO Else
+
+    FECHAPAR  deslocar, e ir ao estado 57
+
+
+Estado 34
+
+   53 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoFloat . FECHAPAR BLOCO Interior FIMBLOCO Else
+
+    FECHAPAR  deslocar, e ir ao estado 58
+
+
+Estado 35
+
+   54 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoCharString . FECHAPAR BLOCO Interior FIMBLOCO Else
+
+    FECHAPAR  deslocar, e ir ao estado 59
+
+
+Estado 36
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL . ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    ATRIBUICAO  deslocar, e ir ao estado 60
+
+
+Estado 37
+
+   56 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacao . FECHAPAR BLOCO Interior FIMBLOCO
+
+    FECHAPAR  deslocar, e ir ao estado 61
+
+
+Estado 38
+
+   57 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoInt . FECHAPAR BLOCO Interior FIMBLOCO
+
+    FECHAPAR  deslocar, e ir ao estado 62
+
+
+Estado 39
+
+   58 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoFloat . FECHAPAR BLOCO Interior FIMBLOCO
+
+    FECHAPAR  deslocar, e ir ao estado 63
+
+
+Estado 40
+
+   59 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoCharString . FECHAPAR BLOCO Interior FIMBLOCO
+
+    FECHAPAR  deslocar, e ir ao estado 64
+
+
+Estado 41
+
+    5 Partes: VARIAVEL ATRIBUICAO INTEIRO . FIMLINHA
+
+    FIMLINHA  deslocar, e ir ao estado 65
+
+
+Estado 42
+
+    6 Partes: VARIAVEL ATRIBUICAO REAL . FIMLINHA
+
+    FIMLINHA  deslocar, e ir ao estado 66
+
+
+Estado 43
+
+    8 Partes: VARIAVEL ATRIBUICAO VARIAVEL . FIMLINHA
+   16 OperacaoAritmetica: VARIAVEL . ADICAO VARIAVEL
+   17                   | VARIAVEL . SUBTRACAO VARIAVEL
+   18                   | VARIAVEL . MULTIPLICACAO VARIAVEL
+   19                   | VARIAVEL . DIVISAO VARIAVEL
+   20 OperacaoAritmeticaInt: VARIAVEL . ADICAO INTEIRO
+   21                      | VARIAVEL . SUBTRACAO INTEIRO
+   22                      | VARIAVEL . MULTIPLICACAO INTEIRO
+   23                      | VARIAVEL . DIVISAO INTEIRO
+   24 OperacaoAritmeticaFloat: VARIAVEL . ADICAO REAL
+   25                        | VARIAVEL . SUBTRACAO REAL
+   26                        | VARIAVEL . MULTIPLICACAO REAL
+   27                        | VARIAVEL . DIVISAO REAL
+
+    FIMLINHA       deslocar, e ir ao estado 67
+    ADICAO         deslocar, e ir ao estado 68
+    SUBTRACAO      deslocar, e ir ao estado 69
+    MULTIPLICACAO  deslocar, e ir ao estado 70
+    DIVISAO        deslocar, e ir ao estado 71
+
+
+Estado 44
+
+    7 Partes: VARIAVEL ATRIBUICAO CHAR . FIMLINHA
+
+    FIMLINHA  deslocar, e ir ao estado 72
+
+
+Estado 45
+
+    9 Partes: VARIAVEL ATRIBUICAO OperacaoAritmetica . FIMLINHA
+
+    FIMLINHA  deslocar, e ir ao estado 73
+
+
+Estado 46
+
+   10 Partes: VARIAVEL ATRIBUICAO OperacaoAritmeticaInt . FIMLINHA
+
+    FIMLINHA  deslocar, e ir ao estado 74
+
+
+Estado 47
+
+   11 Partes: VARIAVEL ATRIBUICAO OperacaoAritmeticaFloat . FIMLINHA
+
+    FIMLINHA  deslocar, e ir ao estado 75
+
+
+Estado 48
+
+   12 Partes: METODO ABREPAR MaisDeUmArgumento . FECHAPAR FIMLINHA
+
+    FECHAPAR  deslocar, e ir ao estado 76
+
+
+Estado 49
+
+   34 OperacaoComparacao: NEGACAO VARIAVEL .
+
+    $padrão  reduzir usando a regra 34 (OperacaoComparacao)
+
+
+Estado 50
+
+   28 OperacaoComparacao: VARIAVEL MAIOR . VARIAVEL
+   35 OperacaoComparacaoInt: VARIAVEL MAIOR . INTEIRO
+   41 OperacaoComparacaoFloat: VARIAVEL MAIOR . REAL
+
+    INTEIRO   deslocar, e ir ao estado 77
+    REAL      deslocar, e ir ao estado 78
+    VARIAVEL  deslocar, e ir ao estado 79
+
+
+Estado 51
+
+   29 OperacaoComparacao: VARIAVEL MENOR . VARIAVEL
+   36 OperacaoComparacaoInt: VARIAVEL MENOR . INTEIRO
+   42 OperacaoComparacaoFloat: VARIAVEL MENOR . REAL
+
+    INTEIRO   deslocar, e ir ao estado 80
+    REAL      deslocar, e ir ao estado 81
+    VARIAVEL  deslocar, e ir ao estado 82
+
+
+Estado 52
+
+   30 OperacaoComparacao: VARIAVEL MAIORIGUAL . VARIAVEL
+   37 OperacaoComparacaoInt: VARIAVEL MAIORIGUAL . INTEIRO
+   43 OperacaoComparacaoFloat: VARIAVEL MAIORIGUAL . REAL
+
+    INTEIRO   deslocar, e ir ao estado 83
+    REAL      deslocar, e ir ao estado 84
+    VARIAVEL  deslocar, e ir ao estado 85
+
+
+Estado 53
+
+   31 OperacaoComparacao: VARIAVEL MENORIGUAL . VARIAVEL
+   38 OperacaoComparacaoInt: VARIAVEL MENORIGUAL . INTEIRO
+   44 OperacaoComparacaoFloat: VARIAVEL MENORIGUAL . REAL
+
+    INTEIRO   deslocar, e ir ao estado 86
+    REAL      deslocar, e ir ao estado 87
+    VARIAVEL  deslocar, e ir ao estado 88
+
+
+Estado 54
+
+   32 OperacaoComparacao: VARIAVEL DIFERENTE . VARIAVEL
+   39 OperacaoComparacaoInt: VARIAVEL DIFERENTE . INTEIRO
+   45 OperacaoComparacaoFloat: VARIAVEL DIFERENTE . REAL
+   47 OperacaoComparacaoCharString: VARIAVEL DIFERENTE . CHAR
+   49                             | VARIAVEL DIFERENTE . STRING
+
+    INTEIRO   deslocar, e ir ao estado 89
+    REAL      deslocar, e ir ao estado 90
+    VARIAVEL  deslocar, e ir ao estado 91
+    CHAR      deslocar, e ir ao estado 92
+    STRING    deslocar, e ir ao estado 93
+
+
+Estado 55
+
+   33 OperacaoComparacao: VARIAVEL IGUAL . VARIAVEL
+   40 OperacaoComparacaoInt: VARIAVEL IGUAL . INTEIRO
+   46 OperacaoComparacaoFloat: VARIAVEL IGUAL . REAL
+   48 OperacaoComparacaoCharString: VARIAVEL IGUAL . CHAR
+   50                             | VARIAVEL IGUAL . STRING
+
+    INTEIRO   deslocar, e ir ao estado 94
+    REAL      deslocar, e ir ao estado 95
+    VARIAVEL  deslocar, e ir ao estado 96
+    CHAR      deslocar, e ir ao estado 97
+    STRING    deslocar, e ir ao estado 98
+
+
+Estado 56
+
+   51 Condicao: IFCONDICAO ABREPAR OperacaoComparacao FECHAPAR . BLOCO Interior FIMBLOCO Else
+
+    BLOCO  deslocar, e ir ao estado 99
+
+
+Estado 57
+
+   52 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoInt FECHAPAR . BLOCO Interior FIMBLOCO Else
+
+    BLOCO  deslocar, e ir ao estado 100
+
+
+Estado 58
+
+   53 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoFloat FECHAPAR . BLOCO Interior FIMBLOCO Else
+
+    BLOCO  deslocar, e ir ao estado 101
+
+
+Estado 59
+
+   54 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoCharString FECHAPAR . BLOCO Interior FIMBLOCO Else
+
+    BLOCO  deslocar, e ir ao estado 102
+
+
+Estado 60
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO . INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    INTEIRO  deslocar, e ir ao estado 103
+
+
+Estado 61
+
+   56 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacao FECHAPAR . BLOCO Interior FIMBLOCO
+
+    BLOCO  deslocar, e ir ao estado 104
+
+
+Estado 62
+
+   57 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoInt FECHAPAR . BLOCO Interior FIMBLOCO
+
+    BLOCO  deslocar, e ir ao estado 105
+
+
+Estado 63
+
+   58 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoFloat FECHAPAR . BLOCO Interior FIMBLOCO
+
+    BLOCO  deslocar, e ir ao estado 106
+
+
+Estado 64
+
+   59 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoCharString FECHAPAR . BLOCO Interior FIMBLOCO
+
+    BLOCO  deslocar, e ir ao estado 107
+
+
+Estado 65
+
+    5 Partes: VARIAVEL ATRIBUICAO INTEIRO FIMLINHA .
+
+    $padrão  reduzir usando a regra 5 (Partes)
+
+
+Estado 66
+
+    6 Partes: VARIAVEL ATRIBUICAO REAL FIMLINHA .
+
+    $padrão  reduzir usando a regra 6 (Partes)
+
+
+Estado 67
+
+    8 Partes: VARIAVEL ATRIBUICAO VARIAVEL FIMLINHA .
+
+    $padrão  reduzir usando a regra 8 (Partes)
+
+
+Estado 68
+
+   16 OperacaoAritmetica: VARIAVEL ADICAO . VARIAVEL
+   20 OperacaoAritmeticaInt: VARIAVEL ADICAO . INTEIRO
+   24 OperacaoAritmeticaFloat: VARIAVEL ADICAO . REAL
+
+    INTEIRO   deslocar, e ir ao estado 108
+    REAL      deslocar, e ir ao estado 109
+    VARIAVEL  deslocar, e ir ao estado 110
+
+
+Estado 69
+
+   17 OperacaoAritmetica: VARIAVEL SUBTRACAO . VARIAVEL
+   21 OperacaoAritmeticaInt: VARIAVEL SUBTRACAO . INTEIRO
+   25 OperacaoAritmeticaFloat: VARIAVEL SUBTRACAO . REAL
+
+    INTEIRO   deslocar, e ir ao estado 111
+    REAL      deslocar, e ir ao estado 112
+    VARIAVEL  deslocar, e ir ao estado 113
+
+
+Estado 70
+
+   18 OperacaoAritmetica: VARIAVEL MULTIPLICACAO . VARIAVEL
+   22 OperacaoAritmeticaInt: VARIAVEL MULTIPLICACAO . INTEIRO
+   26 OperacaoAritmeticaFloat: VARIAVEL MULTIPLICACAO . REAL
+
+    INTEIRO   deslocar, e ir ao estado 114
+    REAL      deslocar, e ir ao estado 115
+    VARIAVEL  deslocar, e ir ao estado 116
+
+
+Estado 71
+
+   19 OperacaoAritmetica: VARIAVEL DIVISAO . VARIAVEL
+   23 OperacaoAritmeticaInt: VARIAVEL DIVISAO . INTEIRO
+   27 OperacaoAritmeticaFloat: VARIAVEL DIVISAO . REAL
+
+    INTEIRO   deslocar, e ir ao estado 117
+    REAL      deslocar, e ir ao estado 118
+    VARIAVEL  deslocar, e ir ao estado 119
+
+
+Estado 72
+
+    7 Partes: VARIAVEL ATRIBUICAO CHAR FIMLINHA .
+
+    $padrão  reduzir usando a regra 7 (Partes)
+
+
+Estado 73
+
+    9 Partes: VARIAVEL ATRIBUICAO OperacaoAritmetica FIMLINHA .
+
+    $padrão  reduzir usando a regra 9 (Partes)
+
+
+Estado 74
+
+   10 Partes: VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FIMLINHA .
+
+    $padrão  reduzir usando a regra 10 (Partes)
+
+
+Estado 75
+
+   11 Partes: VARIAVEL ATRIBUICAO OperacaoAritmeticaFloat FIMLINHA .
+
+    $padrão  reduzir usando a regra 11 (Partes)
+
+
+Estado 76
+
+   12 Partes: METODO ABREPAR MaisDeUmArgumento FECHAPAR . FIMLINHA
+
+    FIMLINHA  deslocar, e ir ao estado 120
+
+
+Estado 77
+
+   35 OperacaoComparacaoInt: VARIAVEL MAIOR INTEIRO .
+
+    $padrão  reduzir usando a regra 35 (OperacaoComparacaoInt)
+
+
+Estado 78
+
+   41 OperacaoComparacaoFloat: VARIAVEL MAIOR REAL .
+
+    $padrão  reduzir usando a regra 41 (OperacaoComparacaoFloat)
+
+
+Estado 79
+
+   28 OperacaoComparacao: VARIAVEL MAIOR VARIAVEL .
+
+    $padrão  reduzir usando a regra 28 (OperacaoComparacao)
+
+
+Estado 80
+
+   36 OperacaoComparacaoInt: VARIAVEL MENOR INTEIRO .
+
+    $padrão  reduzir usando a regra 36 (OperacaoComparacaoInt)
+
+
+Estado 81
+
+   42 OperacaoComparacaoFloat: VARIAVEL MENOR REAL .
+
+    $padrão  reduzir usando a regra 42 (OperacaoComparacaoFloat)
+
+
+Estado 82
+
+   29 OperacaoComparacao: VARIAVEL MENOR VARIAVEL .
+
+    $padrão  reduzir usando a regra 29 (OperacaoComparacao)
+
+
+Estado 83
+
+   37 OperacaoComparacaoInt: VARIAVEL MAIORIGUAL INTEIRO .
+
+    $padrão  reduzir usando a regra 37 (OperacaoComparacaoInt)
+
+
+Estado 84
+
+   43 OperacaoComparacaoFloat: VARIAVEL MAIORIGUAL REAL .
+
+    $padrão  reduzir usando a regra 43 (OperacaoComparacaoFloat)
+
+
+Estado 85
+
+   30 OperacaoComparacao: VARIAVEL MAIORIGUAL VARIAVEL .
+
+    $padrão  reduzir usando a regra 30 (OperacaoComparacao)
+
+
+Estado 86
+
+   38 OperacaoComparacaoInt: VARIAVEL MENORIGUAL INTEIRO .
+
+    $padrão  reduzir usando a regra 38 (OperacaoComparacaoInt)
+
+
+Estado 87
+
+   44 OperacaoComparacaoFloat: VARIAVEL MENORIGUAL REAL .
+
+    $padrão  reduzir usando a regra 44 (OperacaoComparacaoFloat)
+
+
+Estado 88
+
+   31 OperacaoComparacao: VARIAVEL MENORIGUAL VARIAVEL .
+
+    $padrão  reduzir usando a regra 31 (OperacaoComparacao)
+
+
+Estado 89
+
+   39 OperacaoComparacaoInt: VARIAVEL DIFERENTE INTEIRO .
+
+    $padrão  reduzir usando a regra 39 (OperacaoComparacaoInt)
+
+
+Estado 90
+
+   45 OperacaoComparacaoFloat: VARIAVEL DIFERENTE REAL .
+
+    $padrão  reduzir usando a regra 45 (OperacaoComparacaoFloat)
+
+
+Estado 91
+
+   32 OperacaoComparacao: VARIAVEL DIFERENTE VARIAVEL .
+
+    $padrão  reduzir usando a regra 32 (OperacaoComparacao)
+
+
+Estado 92
+
+   47 OperacaoComparacaoCharString: VARIAVEL DIFERENTE CHAR .
+
+    $padrão  reduzir usando a regra 47 (OperacaoComparacaoCharString)
+
+
+Estado 93
+
+   49 OperacaoComparacaoCharString: VARIAVEL DIFERENTE STRING .
+
+    $padrão  reduzir usando a regra 49 (OperacaoComparacaoCharString)
+
+
+Estado 94
+
+   40 OperacaoComparacaoInt: VARIAVEL IGUAL INTEIRO .
+
+    $padrão  reduzir usando a regra 40 (OperacaoComparacaoInt)
+
+
+Estado 95
+
+   46 OperacaoComparacaoFloat: VARIAVEL IGUAL REAL .
+
+    $padrão  reduzir usando a regra 46 (OperacaoComparacaoFloat)
+
+
+Estado 96
+
+   33 OperacaoComparacao: VARIAVEL IGUAL VARIAVEL .
+
+    $padrão  reduzir usando a regra 33 (OperacaoComparacao)
+
+
+Estado 97
+
+   48 OperacaoComparacaoCharString: VARIAVEL IGUAL CHAR .
+
+    $padrão  reduzir usando a regra 48 (OperacaoComparacaoCharString)
+
+
+Estado 98
+
+   50 OperacaoComparacaoCharString: VARIAVEL IGUAL STRING .
+
+    $padrão  reduzir usando a regra 50 (OperacaoComparacaoCharString)
+
+
+Estado 99
+
+   51 Condicao: IFCONDICAO ABREPAR OperacaoComparacao FECHAPAR BLOCO . Interior FIMBLOCO Else
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 121
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 100
+
+   52 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO . Interior FIMBLOCO Else
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 122
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 101
+
+   53 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO . Interior FIMBLOCO Else
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 123
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 102
+
+   54 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO . Interior FIMBLOCO Else
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 124
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 103
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO . VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    VIRGULA  deslocar, e ir ao estado 125
+
+
+Estado 104
+
+   56 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacao FECHAPAR BLOCO . Interior FIMBLOCO
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 126
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 105
+
+   57 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO . Interior FIMBLOCO
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 127
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 106
+
+   58 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO . Interior FIMBLOCO
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 128
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 107
+
+   59 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO . Interior FIMBLOCO
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 129
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 108
+
+   20 OperacaoAritmeticaInt: VARIAVEL ADICAO INTEIRO .
+
+    $padrão  reduzir usando a regra 20 (OperacaoAritmeticaInt)
+
+
+Estado 109
+
+   24 OperacaoAritmeticaFloat: VARIAVEL ADICAO REAL .
+
+    $padrão  reduzir usando a regra 24 (OperacaoAritmeticaFloat)
+
+
+Estado 110
+
+   16 OperacaoAritmetica: VARIAVEL ADICAO VARIAVEL .
+
+    $padrão  reduzir usando a regra 16 (OperacaoAritmetica)
+
+
+Estado 111
+
+   21 OperacaoAritmeticaInt: VARIAVEL SUBTRACAO INTEIRO .
+
+    $padrão  reduzir usando a regra 21 (OperacaoAritmeticaInt)
+
+
+Estado 112
+
+   25 OperacaoAritmeticaFloat: VARIAVEL SUBTRACAO REAL .
+
+    $padrão  reduzir usando a regra 25 (OperacaoAritmeticaFloat)
+
+
+Estado 113
+
+   17 OperacaoAritmetica: VARIAVEL SUBTRACAO VARIAVEL .
+
+    $padrão  reduzir usando a regra 17 (OperacaoAritmetica)
+
+
+Estado 114
+
+   22 OperacaoAritmeticaInt: VARIAVEL MULTIPLICACAO INTEIRO .
+
+    $padrão  reduzir usando a regra 22 (OperacaoAritmeticaInt)
+
+
+Estado 115
+
+   26 OperacaoAritmeticaFloat: VARIAVEL MULTIPLICACAO REAL .
+
+    $padrão  reduzir usando a regra 26 (OperacaoAritmeticaFloat)
+
+
+Estado 116
+
+   18 OperacaoAritmetica: VARIAVEL MULTIPLICACAO VARIAVEL .
+
+    $padrão  reduzir usando a regra 18 (OperacaoAritmetica)
+
+
+Estado 117
+
+   23 OperacaoAritmeticaInt: VARIAVEL DIVISAO INTEIRO .
+
+    $padrão  reduzir usando a regra 23 (OperacaoAritmeticaInt)
+
+
+Estado 118
+
+   27 OperacaoAritmeticaFloat: VARIAVEL DIVISAO REAL .
+
+    $padrão  reduzir usando a regra 27 (OperacaoAritmeticaFloat)
+
+
+Estado 119
+
+   19 OperacaoAritmetica: VARIAVEL DIVISAO VARIAVEL .
+
+    $padrão  reduzir usando a regra 19 (OperacaoAritmetica)
+
+
+Estado 120
+
+   12 Partes: METODO ABREPAR MaisDeUmArgumento FECHAPAR FIMLINHA .
+
+    $padrão  reduzir usando a regra 12 (Partes)
+
+
+Estado 121
+
+   51 Condicao: IFCONDICAO ABREPAR OperacaoComparacao FECHAPAR BLOCO Interior . FIMBLOCO Else
+
+    FIMBLOCO  deslocar, e ir ao estado 130
+
+
+Estado 122
+
+   52 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO Interior . FIMBLOCO Else
+
+    FIMBLOCO  deslocar, e ir ao estado 131
+
+
+Estado 123
+
+   53 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO Interior . FIMBLOCO Else
+
+    FIMBLOCO  deslocar, e ir ao estado 132
+
+
+Estado 124
+
+   54 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO Interior . FIMBLOCO Else
+
+    FIMBLOCO  deslocar, e ir ao estado 133
+
+
+Estado 125
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA . OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    VARIAVEL  deslocar, e ir ao estado 134
+
+    OperacaoComparacaoInt  ir ao estado 135
+
+
+Estado 126
+
+   56 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacao FECHAPAR BLOCO Interior . FIMBLOCO
+
+    FIMBLOCO  deslocar, e ir ao estado 136
+
+
+Estado 127
+
+   57 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO Interior . FIMBLOCO
+
+    FIMBLOCO  deslocar, e ir ao estado 137
+
+
+Estado 128
+
+   58 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO Interior . FIMBLOCO
+
+    FIMBLOCO  deslocar, e ir ao estado 138
+
+
+Estado 129
+
+   59 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO Interior . FIMBLOCO
+
+    FIMBLOCO  deslocar, e ir ao estado 139
+
+
+Estado 130
+
+   51 Condicao: IFCONDICAO ABREPAR OperacaoComparacao FECHAPAR BLOCO Interior FIMBLOCO . Else
+
+    ELSECONDICAO  deslocar, e ir ao estado 140
+
+    $padrão  reduzir usando a regra 60 (Else)
+
+    Else  ir ao estado 141
+
+
+Estado 131
+
+   52 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO Interior FIMBLOCO . Else
+
+    ELSECONDICAO  deslocar, e ir ao estado 140
+
+    $padrão  reduzir usando a regra 60 (Else)
+
+    Else  ir ao estado 142
+
+
+Estado 132
+
+   53 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO Interior FIMBLOCO . Else
+
+    ELSECONDICAO  deslocar, e ir ao estado 140
+
+    $padrão  reduzir usando a regra 60 (Else)
+
+    Else  ir ao estado 143
+
+
+Estado 133
+
+   54 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO Interior FIMBLOCO . Else
+
+    ELSECONDICAO  deslocar, e ir ao estado 140
+
+    $padrão  reduzir usando a regra 60 (Else)
+
+    Else  ir ao estado 144
+
+
+Estado 134
+
+   35 OperacaoComparacaoInt: VARIAVEL . MAIOR INTEIRO
+   36                      | VARIAVEL . MENOR INTEIRO
+   37                      | VARIAVEL . MAIORIGUAL INTEIRO
+   38                      | VARIAVEL . MENORIGUAL INTEIRO
+   39                      | VARIAVEL . DIFERENTE INTEIRO
+   40                      | VARIAVEL . IGUAL INTEIRO
+
+    MAIOR       deslocar, e ir ao estado 145
+    MENOR       deslocar, e ir ao estado 146
+    MAIORIGUAL  deslocar, e ir ao estado 147
+    MENORIGUAL  deslocar, e ir ao estado 148
+    DIFERENTE   deslocar, e ir ao estado 149
+    IGUAL       deslocar, e ir ao estado 150
+
+
+Estado 135
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt . VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    VIRGULA  deslocar, e ir ao estado 151
+
+
+Estado 136
+
+   56 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacao FECHAPAR BLOCO Interior FIMBLOCO .
+
+    $padrão  reduzir usando a regra 56 (Condicao)
+
+
+Estado 137
+
+   57 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO Interior FIMBLOCO .
+
+    $padrão  reduzir usando a regra 57 (Condicao)
+
+
+Estado 138
+
+   58 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO Interior FIMBLOCO .
+
+    $padrão  reduzir usando a regra 58 (Condicao)
+
+
+Estado 139
+
+   59 Condicao: WHILEREPETICAO ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO Interior FIMBLOCO .
+
+    $padrão  reduzir usando a regra 59 (Condicao)
+
+
+Estado 140
+
+   61 Else: ELSECONDICAO . BLOCO Interior FIMBLOCO
+
+    BLOCO  deslocar, e ir ao estado 152
+
+
+Estado 141
+
+   51 Condicao: IFCONDICAO ABREPAR OperacaoComparacao FECHAPAR BLOCO Interior FIMBLOCO Else .
+
+    $padrão  reduzir usando a regra 51 (Condicao)
+
+
+Estado 142
+
+   52 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoInt FECHAPAR BLOCO Interior FIMBLOCO Else .
+
+    $padrão  reduzir usando a regra 52 (Condicao)
+
+
+Estado 143
+
+   53 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoFloat FECHAPAR BLOCO Interior FIMBLOCO Else .
+
+    $padrão  reduzir usando a regra 53 (Condicao)
+
+
+Estado 144
+
+   54 Condicao: IFCONDICAO ABREPAR OperacaoComparacaoCharString FECHAPAR BLOCO Interior FIMBLOCO Else .
+
+    $padrão  reduzir usando a regra 54 (Condicao)
+
+
+Estado 145
+
+   35 OperacaoComparacaoInt: VARIAVEL MAIOR . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 77
+
+
+Estado 146
+
+   36 OperacaoComparacaoInt: VARIAVEL MENOR . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 80
+
+
+Estado 147
+
+   37 OperacaoComparacaoInt: VARIAVEL MAIORIGUAL . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 83
+
+
+Estado 148
+
+   38 OperacaoComparacaoInt: VARIAVEL MENORIGUAL . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 86
+
+
+Estado 149
+
+   39 OperacaoComparacaoInt: VARIAVEL DIFERENTE . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 89
+
+
+Estado 150
+
+   40 OperacaoComparacaoInt: VARIAVEL IGUAL . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 94
+
+
+Estado 151
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA . VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    VARIAVEL  deslocar, e ir ao estado 153
+
+
+Estado 152
+
+   61 Else: ELSECONDICAO BLOCO . Interior FIMBLOCO
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 154
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 153
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL . ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    ATRIBUICAO  deslocar, e ir ao estado 155
+
+
+Estado 154
+
+   61 Else: ELSECONDICAO BLOCO Interior . FIMBLOCO
+
+    FIMBLOCO  deslocar, e ir ao estado 156
+
+
+Estado 155
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO . OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO
+
+    VARIAVEL  deslocar, e ir ao estado 157
+
+    OperacaoAritmeticaInt  ir ao estado 158
+
+
+Estado 156
+
+   61 Else: ELSECONDICAO BLOCO Interior FIMBLOCO .
+
+    $padrão  reduzir usando a regra 61 (Else)
+
+
+Estado 157
+
+   20 OperacaoAritmeticaInt: VARIAVEL . ADICAO INTEIRO
+   21                      | VARIAVEL . SUBTRACAO INTEIRO
+   22                      | VARIAVEL . MULTIPLICACAO INTEIRO
+   23                      | VARIAVEL . DIVISAO INTEIRO
+
+    ADICAO         deslocar, e ir ao estado 159
+    SUBTRACAO      deslocar, e ir ao estado 160
+    MULTIPLICACAO  deslocar, e ir ao estado 161
+    DIVISAO        deslocar, e ir ao estado 162
+
+
+Estado 158
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt . FECHAPAR BLOCO Interior FIMBLOCO
+
+    FECHAPAR  deslocar, e ir ao estado 163
+
+
+Estado 159
+
+   20 OperacaoAritmeticaInt: VARIAVEL ADICAO . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 108
+
+
+Estado 160
+
+   21 OperacaoAritmeticaInt: VARIAVEL SUBTRACAO . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 111
+
+
+Estado 161
+
+   22 OperacaoAritmeticaInt: VARIAVEL MULTIPLICACAO . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 114
+
+
+Estado 162
+
+   23 OperacaoAritmeticaInt: VARIAVEL DIVISAO . INTEIRO
+
+    INTEIRO  deslocar, e ir ao estado 117
+
+
+Estado 163
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR . BLOCO Interior FIMBLOCO
+
+    BLOCO  deslocar, e ir ao estado 164
+
+
+Estado 164
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO . Interior FIMBLOCO
+
+    TIPOVAR         deslocar, e ir ao estado 12
+    IFCONDICAO      deslocar, e ir ao estado 13
+    FORREPETICAO    deslocar, e ir ao estado 14
+    WHILEREPETICAO  deslocar, e ir ao estado 15
+    VARIAVEL        deslocar, e ir ao estado 16
+    METODO          deslocar, e ir ao estado 17
+
+    $padrão  reduzir usando a regra 2 (Interior)
+
+    Interior  ir ao estado 165
+    Partes    ir ao estado 19
+    Condicao  ir ao estado 20
+
+
+Estado 165
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior . FIMBLOCO
+
+    FIMBLOCO  deslocar, e ir ao estado 166
+
+
+Estado 166
+
+   55 Condicao: FORREPETICAO ABREPAR VARIAVEL ATRIBUICAO INTEIRO VIRGULA OperacaoComparacaoInt VIRGULA VARIAVEL ATRIBUICAO OperacaoAritmeticaInt FECHAPAR BLOCO Interior FIMBLOCO .
+
+    $padrão  reduzir usando a regra 55 (Condicao)
